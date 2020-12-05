@@ -1,0 +1,14 @@
+{% extends "groups/group_base.html" %}
+{% load bootstrap4 %}
+
+
+{% block group_content %}
+    <h2 style="background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);   -webkit-background-clip: text;
+  color: transparent;position:relative;top:200px; width:auto;height:45px;border:2px solid blue;">Create a new group!</h2>
+
+    <form action="{% url 'groups:create' %}" method="POST" id="groupForm" style="position:relative;left:28%">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button type="submit" class="btn btn-dark btn-lg">Create</button>
+    </form>
+{% endblock group_content %}

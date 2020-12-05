@@ -1,0 +1,39 @@
+
+{% extends "base.html" %}
+{% include 'friends/listfriends.html'%}
+
+{% block content %}
+
+<form class="example" method="GET">
+    <input type="text" placeholder="search..." name="search" style="position:relative;top:60px;width:70%;">
+    {% if search %} value="{{ search }}" {% endif %}
+
+    <button type="submit" style="position:relative;top:60px;width:15%;">Submit</button>
+</form>
+<div style="position:relative;top:80px;">
+
+{% for result in all_search_results %}
+{% if result.profs.picture %}
+<img src="{{ result.profs.picture.url }}" alt="wait..." style="width: 50px; height: 50px; border-radius: 4px;" />
+{% endif %}
+  <a href="{% url 'posts:for_user' username=result.username %}"> {{ result.username }} </a>
+
+  {% if result in friends %}
+<p>InFriendsList</p>
+   <br/>
+   {% elif result.username == user.username %}
+   <p>Its You</p>
+ <br/>
+  {% else %}
+  <a href="{% url 'friends:friendoperation' operation='add' pk=result.pk %}" style="display:block;">
+    <button type="button" class="btn btn-primary">AddFriend</button>
+  </a>
+   <br/>
+
+   {% endif %}
+
+{% endfor %}
+</div>
+
+
+{% endblock content%}

@@ -1,0 +1,14 @@
+{% extends "posts/post_base.html" %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block post_content %}
+    <h2 style="position:relative;top:60px; background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);   -webkit-background-clip: text;
+  color: transparent;">Profile Picture </h2>
+    <form id="postForm" action="{% url 'propics:create' %}" method="POST" enctype="multipart/form-data" style="position:relative;top:50px;left:20%">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button type="submit" class="btn btn-dark btn-lg">Upload</button>
+    </form>
+
+    {% endblock post_content %}

@@ -1,0 +1,47 @@
+head
+    style
+      include ../static/simplesocial/css/cat.css
+
+body
+  .hanami-neko
+      .cherry-tree
+          .cherry-tree__cherry
+              - for (var i = 0; i < 40; i++)
+                  - for (var j = 0; j < 50; j++)
+                      .sakura(style=`top: ${i*10}px; left: ${j*8-20}px;transform: scale(0.5) rotate(${i*i*j*j}deg);`)
+          .cherry-tree__tree
+
+      .cherry-tree
+          .cherry-tree__cherry
+              - for (var i = 0; i < 40; i++)
+                  - for (var j = 0; j < 50; j++)
+                      .sakura(style=`top: ${i*10}px; left: ${j*8-20}px;transform: scale(0.5) rotate(${i*i*j*j}deg);`)
+          .cherry-tree__tree
+
+      .sakura-wrapper
+          - for (var i = 0; i < 35; i++)
+              .sakura(style=`left: ${8.5*i}px;`)
+
+      .dango
+          .dango__part
+
+      .cat-wrapper
+          .cat
+              .cat__tail
+              .cat__body
+              .cat__hand.cat__hand--right
+              .cat__hand.cat__hand--left
+              .cat__face
+                  .cat__nose
+                  .cat__eye
+                  .cat__beard.cat__beard--right
+                  .cat__beard.cat__beard--left
+                  .cat__ear.cat__ear--right
+                  .cat__ear.cat__ear--left
+
+              .pc
+                  .pc__huta
+                  .pc__icon
+                      .pc__icon-dot
+                  .pc__bottom
+          h1 this is
