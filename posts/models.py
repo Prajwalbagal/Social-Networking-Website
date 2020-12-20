@@ -20,9 +20,17 @@ class Post(models.Model):
         Group, related_name='posts', on_delete=models.CASCADE,
         blank=True, null=True)
     image=models.ImageField(upload_to='profiles',blank=True)
+    likes=models.IntegerField(default=0)
+    dislikes=models.IntegerField(default=0)
 
     def __str__(self):
         return self.message
+    def like(self):
+        self.likes+=1
+        self.save()
+    def dislike(self):
+        self.dislikes+=1
+        self.save()
 
     def save(self, *args, **kwargs):
         self.message_html = self.message

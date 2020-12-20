@@ -11,10 +11,10 @@ def friendoperation(request,operation,pk):
         Friend.makefriend(request.user, new_friend)
     elif operation == 'remove':
         Friend.losefriend(request.user, new_friend)
-    return redirect('posts:all')
+    return redirect('friends:listfriends')
 
 def listfriends(request):
-    
+
     try:
         friendobj=Friend.objects.get(current_user=request.user)
 

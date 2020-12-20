@@ -10,30 +10,46 @@
 
     <button type="submit" style="position:relative;top:60px;width:15%;">Submit</button>
 </form>
-<div style="position:relative;top:80px;">
 
 {% for result in all_search_results %}
+<div style="position:relative;top:80px;width: auto;
+">
+                              <!-- if profile-image of the frined exists -->
+
 {% if result.profs.picture %}
-<img src="{{ result.profs.picture.url }}" alt="wait..." style="width: 50px; height: 50px; border-radius: 4px;" />
+<img src="{{ result.profs.picture.url }}" alt="wait..." style="width: 80px; height: 80px; border-radius: 50%;" />
+<a href="{% url 'posts:for_user' username=result.username %}" style="position:relative;top:-55px;left:100px"> <h4>{{ result.username }}</h4> </a>
+
+{% if result in friends %}
+<h3 style="position:relative;left:800px;width:15%;top:-90px;">InFriendsList</h3>
+ {% elif result.username == user.username %}
+ <h3 style="position:relative;left:800px;width:15%;top:-90px;;">Its You</h3>
+{% else %}
+<a href="{% url 'friends:friendoperation' operation='add' pk=result.pk %}" style="display:block;">
+  <button type="button" class="btn btn-primary" style="position:relative;left:800px;width:15%;top:-90px;">AddFriend</button>
+</a>
 {% endif %}
-  <a href="{% url 'posts:for_user' username=result.username %}"> {{ result.username }} </a>
+                                  <!-- if profile-image of the frined does not exists -->
+
+{% else %}
+  <a href="{% url 'posts:for_user' username=result.username %}" style="position:relative:top:-20px;"> <h4>{{ result.username }}</h4> </a>
 
   {% if result in friends %}
-<p>InFriendsList</p>
-   <br/>
+<h3 style="position:relative;left:800px;width:15%;top:-30px;">InFriendsList</h3>
    {% elif result.username == user.username %}
-   <p>Its You</p>
- <br/>
+   <h3 style="position:relative;left:800px;width:15%;top:-60px;">Its You</h3>
   {% else %}
   <a href="{% url 'friends:friendoperation' operation='add' pk=result.pk %}" style="display:block;">
-    <button type="button" class="btn btn-primary">AddFriend</button>
+    <button type="button" class="btn btn-primary" style="position:relative;left:800px;width:15%;top:-35px;">AddFriend</button>
   </a>
-   <br/>
 
    {% endif %}
+{% endif %}
 
+   </div>
+   <br/>
 {% endfor %}
-</div>
+
 
 
 {% endblock content%}

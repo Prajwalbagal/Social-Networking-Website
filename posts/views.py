@@ -6,13 +6,13 @@ from django.http import Http404
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
-
+from django.shortcuts import redirect
 from . import forms, models
 from django.contrib import messages
-
+from django.shortcuts import get_list_or_404, get_object_or_404
 from friends.models import Friend
 from django.core.exceptions import ObjectDoesNotExist
-
+from .models import Post
 User = get_user_model()
 # Create your views here.
 
@@ -98,3 +98,13 @@ class DeletePost(LoginRequiredMixin, SelectRelatedMixin, generic.DeleteView):
     def delete(self, *args, **kwargs):
         messages.success(self.request, "Post Deleted")
         return super().delete(*args, **kwargs)
+def likepost(self,pk):
+    post=Post.objects.get(pk=pk)
+    post.like()
+    return redirect('posts:all')
+
+def dislikepost(self,pk):
+    post=Post.objects.get(pk=pk)
+    post.dislike()
+
+    return redirect('posts:all')

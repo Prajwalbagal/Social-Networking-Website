@@ -1,16 +1,17 @@
 {% extends "groups/group_base.html" %}
 
 {% block pregroup %}
-<h1>{{group.name}}</h1>
-<h2> Member Count: {{group.members.count}}</h2>
+<h1>{{group.name}} <br/>
+</h1>
+<h2 style="position:relative;left:140px;"> Member Count: {{group.members.count}}   </h2>
 
 <div class="content">
     {% if user in group.members.all %}
-    <a href="{% url 'groups:leave' slug=group.slug %}" class="btn btn-lg btn-fill btn-warning">
+    <a href="{% url 'groups:leave' slug=group.slug %}" class="btn btn-lg btn-fill btn-warning" style="position:relative;left:160px;">
         <span class="fas fa-times-circle"></span> Leave
     </a>
     {% else %}
-    <a href="{% url 'groups:join' slug=group.slug %}" class="btn btn-lg btn-fill btn-dark">
+    <a href="{% url 'groups:join' slug=group.slug %}" class="btn btn-lg btn-fill btn-dark" style="position:relative;left:160px;">
         <span class="fas fa-check"></span> Join
     </a>
     {% endif %}
@@ -20,7 +21,8 @@
 {% block group_content %}
     <div class="col-md-8">
         {% if group.posts.count == 0 %}
-            <h2>No posts in this group yet!</h2>
+            <h2 style="background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);   -webkit-background-clip: text;
+            color: transparent;position:relative;top:200px;left:300px ;position:relative;top:200px;left:200px" >No posts in this group yet!</h2>
         {% else %}
             {% for post in group.posts.all %}
                 {% include "posts/_post.html" %}

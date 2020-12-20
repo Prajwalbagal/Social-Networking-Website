@@ -1,21 +1,16 @@
-<!DOCTYPE html>
-
-<html lang="en" dir="ltr">
+{% extends "base.html" %}
 {% load static %}
+  <link rel="stylesheet" href="{% static 'simplesocial/css/cat.css' %}">
 
-<head>
-    <title>Simple Social</title>
+{% block content %}
 
-    <link rel="stylesheet" href="{% static 'simplesocial/css/cat.css' %}">
 
     <!-- Fonts -->
-</head>
-<body>
 
+<h1 style="background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);   -webkit-background-clip: text;
+color: transparent;position: relative;top:150px;left:300px;">Welcome to Star Social</h1>
 
-
-
-    <div class="typing-cat">
+    <div class="typing-cat" style="position:relative;top:250px;left:300px;width:150px;">
   <style>
     .typing-cat {
       position: relative;
@@ -102,6 +97,4 @@
   </svg>
 </div>
 
-
-</body>
-</html>
+{% endblock content %}

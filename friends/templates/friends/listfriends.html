@@ -2,15 +2,35 @@
 
 {% block content %}
 {% if exist %}
-    <h1 style="color:green">Friends ({{friends.count}})</h1>
+
+
+    <h1 style="background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);   -webkit-background-clip: text;
+    color: transparent; position:relative;left:300px;top:30px">Friends ({{friends.count}})</h1>
+    <br>
+    <br>
+    <br>
     {% for friend in friends %}
-    <a href="{% url 'posts:for_user' username=friend.username %}"> <h3>{{ friend.username }}</h3></a>
+    <!-- if profile-image of the frined exists -->
+
+    {% if friend.profs.picture %}
+    <img src="{{ friend.profs.picture.url }}" alt="wait..." style="width: 80px; height: 80px; border-radius:50%" />
+    <a href="{% url 'posts:for_user' username=friend.username %}"> <h3 style="position:relative;left:100px;top:-55px">{{ friend.username }}</h3></a>
     <a href="{% url 'friends:friendoperation' operation='remove' pk=friend.pk %}">
-      <button type="button" class="btn btn-primary">RemoveFriend</button>
+      <button type="button" class="btn btn-primary" style="position:relative;left:800px;top:-85px;width:15%;">RemoveFriend</button>
     </a>
      <br/>
+     {% else %}
+     <!-- if image of friend does not exists -->
+
+    <a href="{% url 'posts:for_user' username=friend.username %}"> <h3 >{{ friend.username }}</h3></a>
+    <a href="{% url 'friends:friendoperation' operation='remove' pk=friend.pk %}">
+      <button type="button" class="btn btn-primary" style="position:relative;left:800px;width:15%;top:-30px;">RemoveFriend</button>
+    </a>
+     <br/>
+     {% endif %}
+
      {% endfor %}
-  
+
 {% else %}
 <h1>No friends</h1>
 {% endif %}
